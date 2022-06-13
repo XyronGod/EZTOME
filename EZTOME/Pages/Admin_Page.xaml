@@ -1,0 +1,150 @@
+﻿<Page x:Class="EZTOME.Pages.Admin_Page"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:EZTOME.Pages"
+      mc:Ignorable="d" 
+      d:DesignHeight="600" d:DesignWidth="1200"
+      Title="Admin_Page"
+      Background="White">
+
+    <Grid>
+
+        <TabControl >
+            <TabItem Header="Изменение данных сотрудников">
+                <Grid Background="#FFE5E5E5">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="1*"/>
+                        <ColumnDefinition Width="1*"/>
+                        <ColumnDefinition Width="1*"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="1*"/>
+                        <RowDefinition Height="1*"/>
+                        <RowDefinition Height="1*"/>
+                        <RowDefinition Height="1*"/>
+                        <RowDefinition Height="1*"/>
+                        <RowDefinition Height="1*"/>
+                        <RowDefinition Height="1*"/>
+                        <RowDefinition Height="1*"/>
+                    </Grid.RowDefinitions>
+                    <TextBox x:Name="Text_Login" Text="{Binding Employers.Login}" HorizontalAlignment="Left" materialDesign:HintAssist.Hint="Изменение Логина" Style="{StaticResource MaterialDesignFloatingHintTextBox}" Height="40" Margin="10,22,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="125"/>
+                    <TextBox x:Name="Text_Password" Text="{Binding Employers.Password}" HorizontalAlignment="Left" materialDesign:HintAssist.Hint="Изменение Пароля" Style="{StaticResource MaterialDesignFloatingHintTextBox}" Height="40" Margin="10,22,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="125" Grid.Row="1"/>
+                    <TextBox x:Name="Text_FirstName" Text="{Binding Employers.FisrstName}" HorizontalAlignment="Left" materialDesign:HintAssist.Hint="Изменение Имени" Style="{StaticResource MaterialDesignFloatingHintTextBox}" Height="40" Margin="10,22,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="125" Grid.Row="2"/>
+                    <TextBox x:Name="Text_SurName" Text="{Binding Employers.SurName}" HorizontalAlignment="Left" materialDesign:HintAssist.Hint="Изменение Фамилии" Style="{StaticResource MaterialDesignFloatingHintTextBox}" Height="40" Margin="10,22,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="125" Grid.Row="3"/>
+                    <TextBox x:Name="Text_Patronymic" Text="{Binding Employers.Patronymic}" HorizontalAlignment="Left" materialDesign:HintAssist.Hint="Изменение Отчества" Style="{StaticResource MaterialDesignFloatingHintTextBox}" Height="40" Margin="10,22,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="125" Grid.Row="4"/>
+                    <TextBox x:Name="Text_Mail" Text="{Binding Employers.Email}" HorizontalAlignment="Left" materialDesign:HintAssist.Hint="Изменение Почты" Style="{StaticResource MaterialDesignFloatingHintTextBox}" Height="40" Margin="10,22,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="125" Grid.Row="5"/>
+                    <ComboBox ItemsSource="{Binding Teams}" SelectedItem="{Binding Employers.Team}"  x:Name="Combo_Team" HorizontalAlignment="Left" Margin="10,10,0,0" Grid.Row="6" VerticalAlignment="Top" Width="120">
+                        <ComboBox.ItemTemplate>
+                            <DataTemplate>
+                                <TextBlock><Run Text="{Binding TeamID}"/></TextBlock>
+                            </DataTemplate>
+                        </ComboBox.ItemTemplate>
+                    </ComboBox>
+                    <ComboBox ItemsSource="{Binding Roles}" SelectedItem="{Binding Employers.Roles}"  x:Name="Combo_Role" HorizontalAlignment="Left" Margin="10,10,0,0" Grid.Row="7" VerticalAlignment="Top" Width="120">
+                        <ComboBox.ItemTemplate>
+                            <DataTemplate>
+                                <TextBlock><Run Text="{Binding Name}"/></TextBlock>
+                            </DataTemplate>
+                        </ComboBox.ItemTemplate>
+                    </ComboBox>
+                    <ListBox ItemsSource="{Binding EmployersList}" x:Name="List_Employers" Grid.Column="2" HorizontalAlignment="Left" Height="552" Grid.RowSpan="8" VerticalAlignment="Top" Width="266" SelectionChanged="List_Employers_SelectionChanged" Margin="78,0,0,0">
+                        <ListBox.ItemTemplate>
+                            <DataTemplate>
+                                <TextBlock>
+                                    <Run Text="{Binding SurName}"/>
+                                    <Run Text=" "/>
+                                    <Run Text="{Binding FisrstName}"/>
+                                    <Run Text=" "/>
+                                    <Run Text="{Binding Patronymic}"/>
+                                </TextBlock>
+                            </DataTemplate>
+                        </ListBox.ItemTemplate>
+                    </ListBox>
+                    <Button Content="Обновить" Grid.Column="1" HorizontalAlignment="Left" Margin="137,14,0,0" Grid.Row="6" VerticalAlignment="Top" Width="115" Click="Button_Click"/>
+                </Grid>
+            </TabItem>
+            <TabItem Header="Добавление сотрудника">
+                <Grid Background="#FFE5E5E5">
+                    <Border MinWidth="400"  VerticalAlignment="Center" Padding="30" MaxWidth="550" CornerRadius="20">
+                        <StackPanel >
+                            <TextBlock Text="Регистрация Сотрудника" FontSize="30" FontWeight="Bold" Margin="0 0 0 20" HorizontalAlignment="Center" Foreground="#FF673AB7" />
+                            <TextBox x:Name="Text_Login1" materialDesign:HintAssist.Hint="Введите Логин" Style="{StaticResource MaterialDesignFloatingHintTextBox}" FontSize="16" />
+                            <TextBox x:Name="Text_Password1" materialDesign:HintAssist.Hint="Введите Пароль" Style="{StaticResource MaterialDesignFloatingHintTextBox}" FontSize="16" />
+                            <TextBox x:Name="Text_FirstName1" materialDesign:HintAssist.Hint="Введите Имя" Style="{StaticResource MaterialDesignFloatingHintTextBox}" FontSize="16" />
+                            <TextBox x:Name="Text_SurName1" materialDesign:HintAssist.Hint="Введите Фамилию" Style="{StaticResource MaterialDesignFloatingHintTextBox}" FontSize="16" />
+                            <TextBox x:Name="Text_Patronymic1" materialDesign:HintAssist.Hint="Введите Отчество" Style="{StaticResource MaterialDesignFloatingHintTextBox}" FontSize="16" />
+                            <TextBox x:Name="Text_Mail1" materialDesign:HintAssist.Hint="Введите Почту" Style="{StaticResource MaterialDesignFloatingHintTextBox}" FontSize="16" />
+                            <ComboBox x:Name="Combo_Roles1"></ComboBox>
+                            <Button Content="Добавить Сотрудника" HorizontalAlignment="Center"  Margin="0,20,0,0" Cursor="Hand" Click="Button_Click_1" />
+                        </StackPanel>
+                    </Border>
+                </Grid>
+            </TabItem>
+            <TabItem  Header="Создание команд" >
+                <Grid Background ="#FFE5E5E5">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="1*"/>
+                        <ColumnDefinition Width="1*"/>
+                        <ColumnDefinition Width="1*"/>
+                    </Grid.ColumnDefinitions>
+                    <Border HorizontalAlignment="Left" Width="400" >
+                        <StackPanel>
+                            <Label Content="Работники не в команде" HorizontalAlignment="Center" Margin="10,10,10,0" VerticalAlignment="Top" Width="248" Height="37" FontWeight="Bold" HorizontalContentAlignment="Center" FontSize="20"/>
+                            <ListBox x:Name="List_Employers1" HorizontalAlignment="Left" Height="350" Margin="76,0,0,0" VerticalAlignment="Top" Width="247" SelectionChanged="List_Employers1_SelectionChanged"/>
+                        </StackPanel>
+                    </Border>
+                    <Border HorizontalAlignment="Center"  Width="400" Grid.Column="1">
+                        <StackPanel>
+                            <Label Content="ОПИСАНИЕ КОМАНДЫ"  HorizontalAlignment="Center" Margin="10,10,10,0" VerticalAlignment="Top" Width="247" Height="32" FontWeight="Bold" HorizontalContentAlignment="Center" FontSize="20"/>
+                            <TextBox x:Name="Text_Desc"  HorizontalAlignment="Left" Height="350" Margin="76,0,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="248"/>
+                            <Button Content="Создать команду"   Margin="20"  Width="163"  Click="Button_Click_2"/>
+                        </StackPanel>
+                    </Border>
+                    <Border Grid.Column="2">
+                        <StackPanel HorizontalAlignment="Right"  Width="400" Grid.Column="2">
+                            <Label Content="Команда" Grid.Column="2" HorizontalAlignment="Center" Margin="10,10,10,0" VerticalAlignment="Top" Width="246" Height="32" FontWeight="Bold" HorizontalContentAlignment="Center" FontSize="20"/>
+                            <ListBox x:Name="List_Team" Grid.Column="2" HorizontalAlignment="Left" Height="350" Margin="76,0,0,0"  Width="246" SelectionChanged="List_Team_SelectionChanged"/>
+                        </StackPanel>
+                    </Border>
+
+
+
+
+                </Grid>
+            </TabItem>
+            <TabItem Header="Присвоение команды TeamLeada">
+                <Grid Background="#FFE5E5E5">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="1*"/>
+                        <ColumnDefinition Width="1*"/>
+                        <ColumnDefinition Width="1*"/>
+                    </Grid.ColumnDefinitions>
+                    <Border HorizontalAlignment="Left" Width="400" >
+                        <StackPanel>
+                            <Label Content="TeamLeada не в команде" HorizontalAlignment="Center" Margin="0,10,0,0" VerticalAlignment="Top" Width="400" Height="37" FontWeight="Bold" HorizontalContentAlignment="Center" FontSize="20"/>
+                            <ListBox x:Name="List_Employers2" HorizontalAlignment="Left" Height="350" Margin="76,0,0,0" VerticalAlignment="Top" Width="247" SelectionChanged="List_Employers1_SelectionChanged"/>
+                        </StackPanel>
+                    </Border>
+                    <Border HorizontalAlignment="Center"  Width="400" Grid.Column="1">
+                        <StackPanel>
+                            <Button Content="Присвоить лидера"   Margin="118,400"  Width="163" Click="Button_Click_3"  />
+                        </StackPanel>
+                    </Border>
+                    <Border Grid.Column="2">
+                        <StackPanel HorizontalAlignment="Right"  Width="400" Grid.Column="2">
+                            <Label Content="Команда без teamleada" Grid.Column="2" HorizontalAlignment="Center" Margin="59,10,58,0" VerticalAlignment="Top" Width="283" Height="32" FontWeight="Bold" HorizontalContentAlignment="Center" FontSize="20"/>
+                            <ListBox x:Name="List_Team1" Grid.Column="2" HorizontalAlignment="Left" Height="350" Margin="76,0,0,0"  Width="246" SelectionChanged="List_Team_SelectionChanged"/>
+                        </StackPanel>
+                    </Border>
+                </Grid>
+
+            </TabItem>
+            
+
+        </TabControl>
+
+    </Grid>
+</Page>
